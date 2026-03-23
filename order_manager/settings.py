@@ -14,7 +14,13 @@ from pathlib import Path
 import os
 
 # ALLOWED_HOSTS = ['*']  # for now
-ALLOWED_HOSTS = ['order-manager-6.onrender.com']
+# ALLOWED_HOSTS = ['order-manager-6.onrender.com']
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
