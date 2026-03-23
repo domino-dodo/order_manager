@@ -15,10 +15,10 @@ import os
 
 # ALLOWED_HOSTS = ['*']  # for now
 # ALLOWED_HOSTS = ['order-manager-6.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'order-manager-6.onrender.com']
+
+# Render's specific environment variable
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
-
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
