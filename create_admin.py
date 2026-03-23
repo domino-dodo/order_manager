@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 username = "john"
 password = "intel994"
-email = "kyawzawtun220589@gmail.com.com"
+email = ""
 
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username, email, password)
