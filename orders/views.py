@@ -6,7 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.db.models import Sum
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def delete_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    order.delete()
+    return redirect('order_list')
 
 @login_required
 def mark_delivered(request, order_id):
