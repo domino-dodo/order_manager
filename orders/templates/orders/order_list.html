@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<div class="max-w-5xl mx-auto p-6">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Dashboard</h1>
+    <div>
+      <span class="mr-4 text-gray-600">Hi, {{ request.user.username }}</span>
+      <a href="/logout/" class="bg-red-500 text-white px-3 py-1 rounded">Logout</a>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total Orders</p>
+      <h2 class="text-2xl font-bold">{{ total_orders }}</h2>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <p class="text-gray-500">Total Revenue</p>
+      <h2 class="text-2xl font-bold">{{ total_revenue }}</h2>
+    </div>
+  </div>
+
+  <!-- Add button -->
+  <div class="mb-4">
+    <a href="/add/" class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Order</a>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white shadow rounded">
+    <table class="w-full text-left">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3">Customer</th>
+          <th class="p-3">Product</th>
+          <th class="p-3">Price</th>
+          <th class="p-3">Status</th>
+          <th class="p-3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for order in orders %}
+        <tr class="border-t">
+          <td class="p-3">{{ order.customer.name }}</td>
+          <td class="p-3">{{ order.product_name }}</td>
+          <td class="p-3">{{ order.price }}</td>
+          <td class="p-3">
+            {% if order.status == 'pending' %}
+              <span class="text-yellow-600">Pending</span>
+            {% else %}
+              <span class="text-green-600">Delivered</span>
+            {% endif %}
+          </td>
+          <td class="p-3">
+            {% if order.status == 'pending' %}
+              <a href="/delivered/{{ order.id }}/" class="text-blue-500">Mark Delivered</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="p-3 text-center text-gray-500">No orders yet</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>
