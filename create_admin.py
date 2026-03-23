@@ -6,9 +6,9 @@ django.setup()
 
 from django.contrib.auth.models import User
 
-username = "admin"
-password = "admin123"
-email = "admin@example.com"
+username = "john"
+password = "intel994"
+email = "kyawzawtun220589@gmail.com.com"
 
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username, email, password)
