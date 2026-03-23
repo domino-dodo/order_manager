@@ -8,11 +8,13 @@ from django.contrib.auth import logout
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def delete_order(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     order.delete()
+    messages.success(request, 'Order deleted successfully.')
     return redirect('order_list')
 
 @login_required
@@ -20,6 +22,7 @@ def mark_delivered(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     order.status = 'delivered'
     order.save()
+    messages.success(request, 'Order marked as delivered.')
     return redirect('order_list')
 
 def logout_view(request):
@@ -99,7 +102,7 @@ def add_order(request):
             product_name=product,
             price=price
         )
-
+        messages.success(request, 'Order added successfully.')
         return redirect('order_list')
 
     return render(request, 'orders/add_order.html')
