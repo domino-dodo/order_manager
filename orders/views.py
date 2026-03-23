@@ -75,10 +75,15 @@ def order_list(request):
     total_orders = orders.count()
     total_revenue = orders.filter(status='delivered').aggregate(Sum('price'))['price__sum'] or 0
 
+    pending_orders = orders.filter(status='pending').count()
+    delivered_orders = orders.filter(status='delivered').count()
+
     context = {
         'orders': orders,
         'total_orders': total_orders,
-        'total_revenue': total_revenue
+        'total_revenue': total_revenue,
+        'pending_orders': pending_orders,
+        'delivered_orders': delivered_orders,
     }
 
     return render(request, 'orders/order_list.html', context)

@@ -29,17 +29,29 @@
   {% endif %}
 
   <!-- Cards -->
-  <div class="grid grid-cols-2 gap-4 mb-6">
-    <div class="bg-white p-4 rounded shadow">
-      <p class="text-gray-500">Total Orders</p>
-      <h2 class="text-2xl font-bold">{{ total_orders }}</h2>
-    </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
 
-    <div class="bg-white p-4 rounded shadow">
-      <p class="text-gray-500">Total Revenue</p>
-      <h2 class="text-2xl font-bold">{{ total_revenue }}</h2>
-    </div>
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-500">Total Orders</p>
+    <h2 class="text-2xl font-bold">{{ total_orders }}</h2>
   </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-500">Revenue</p>
+    <h2 class="text-2xl font-bold">{{ total_revenue }}</h2>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-500">Pending</p>
+    <h2 class="text-2xl font-bold text-yellow-600">{{ pending_orders }}</h2>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-500">Delivered</p>
+    <h2 class="text-2xl font-bold text-green-600">{{ delivered_orders }}</h2>
+  </div>
+
+</div>
 
   <!-- Add button -->
   <div class="mb-4">
